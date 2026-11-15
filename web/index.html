@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#082f30">
+  <title>NEXUS | Assistente de emergência</title>
+  <link rel="stylesheet" href="nexus.css">
+  <script src="nexus.js" defer></script>
+</head>
+<body>
+  <a href="#conversa" class="skip">Ir para a conversa</a>
+  <header class="top">
+    <div class="shell top-inner">
+      <a class="brand" href="./" aria-label="NEXUS, início">
+        <svg viewBox="0 0 40 40" aria-hidden="true" width="39" height="39"><rect width="40" height="40" rx="12" fill="#c8f483"/><path d="M11 28V12l18 16V12M11 12h5m8 16h5" fill="none" stroke="#082f30" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>NEXUS<small>Comunicação de emergência</small></span>
+      </a>
+      <span class="tag tag-header"><span class="dot"></span> Protótipo FIAP</span>
+    </div>
+  </header>
+
+  <main class="shell">
+    <div class="hero">
+      <div class="eyebrow"><span></span> CITIZENTECH · GLOBAL SOLUTION</div>
+      <h1>Assistente de emergência<span>.</span></h1>
+      <p>Registre um SOS e acompanhe o que aconteceu com seu pedido.</p>
+    </div>
+
+    <div class="notice"><span class="notice-icon" aria-hidden="true">i</span><p><strong>Ambiente de simulação.</strong> Não aciona equipes de resgate. Use apenas dados fictícios.</p></div>
+
+    <div class="workspace">
+      <section class="panel conversation" aria-labelledby="conversa">
+        <header class="panel-head">
+          <div class="avatar" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-5 4V6z"/><path d="M8 9h8m-8 3h5"/></svg></div>
+          <div class="panel-title"><h2 id="conversa" tabindex="-1">Conversa com NEXUS</h2><p>Webchat · somente texto</p></div>
+          <span class="tag mode"><span class="dot"></span> Canal local</span>
+        </header>
+        <p id="etapa" class="step" hidden></p>
+        <div id="mensagens" class="history" role="log" aria-label="Histórico da conversa" aria-live="polite" aria-relevant="additions" tabindex="0"></div>
+        <div id="sugestoes" class="chips" aria-label="Respostas rápidas"></div>
+        <p id="erro" class="error" role="status" hidden></p>
+        <form id="compositor" autocomplete="off">
+          <label class="sr" for="texto">Sua mensagem</label>
+          <input id="texto" name="texto" placeholder="Escreva sua mensagem…" maxlength="500" required>
+          <button type="submit" id="enviar" class="send">Enviar <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+        </form>
+        <footer class="panel-foot"><span id="motor">Assistente local</span><span id="indicador" role="status"></span></footer>
+      </section>
+
+      <aside class="sidebar" aria-label="Painel de demonstração">
+        <section class="panel tracking" aria-labelledby="titulo-rastreio">
+          <div class="side-label"><span class="side-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12h5l3-7 4 14 2-7h4"/></svg></span><span>ACOMPANHAMENTO</span></div>
+          <h2 id="titulo-rastreio">Pedido acompanhado</h2>
+          <p id="protocolo" class="protocol" aria-live="polite">Nenhum SOS nesta sessão</p>
+          <div class="track-list">
+            <div class="track-item" id="salvo"><span aria-hidden="true">1</span><div><strong>Salvo no dispositivo</strong><p>O pedido entra na fila local.</p></div></div>
+            <div class="track-item" id="recebido"><span aria-hidden="true">2</span><div><strong>Recebido pela central simulada</strong><p>Na demo, o relé precisa estar disponível.</p></div></div>
+          </div>
+        </section>
+
+        <section class="panel relay" aria-labelledby="titulo-rele">
+          <div class="side-label"><span class="side-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M8.5 8.5a5 5 0 0 0 0 7m7 0a5 5 0 0 0 0-7m-10-3a9 9 0 0 0 0 13m13 0a9 9 0 0 0 0-13"/></svg></span><span>CONTROLE DA DEMO</span></div>
+          <h2 id="titulo-rele">Relé simulado</h2>
+          <p>Mostre o que muda quando surge uma rota. Este controle não usa Bluetooth, rádio ou Wi-Fi Direct.</p>
+          <label class="toggle"><input type="checkbox" id="rota"><span class="switch" aria-hidden="true"></span><span>Rota disponível</span></label>
+          <button type="button" id="retransmitir" class="relay-button">Testar retransmissão</button>
+        </section>
+      </aside>
+    </div>
+    <footer class="page-foot"><span>NEXUS · PROTÓTIPO ACADÊMICO</span><span>FIAP · Global Solution 2026/2</span></footer>
+  </main>
+</body>
+</html>
