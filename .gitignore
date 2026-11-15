@@ -1,0 +1,7 @@
+node_modules/
+.nexus-data/
+.env
+.env.*
+!.env.example
+*.backup
+relatorio_nexus.csv

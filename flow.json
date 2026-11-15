@@ -1,0 +1,186 @@
+[
+  {
+    "id": "a11ce2026f1a0000",
+    "type": "tab",
+    "label": "NEXUS · Webchat e Telegram",
+    "disabled": false,
+    "info": "Execute pelo npm start com settings.cjs. A sessão separa cada navegador e cada chat privado do Telegram. O Java mantém a fila local."
+  },
+  {
+    "id": "a11ce2026f1a0001",
+    "type": "http in",
+    "z": "a11ce2026f1a0000",
+    "name": "Webchat · POST",
+    "x": 160,
+    "y": 120,
+    "url": "/api/nexus/chat",
+    "method": "post",
+    "upload": false,
+    "swaggerDoc": "",
+    "wires": [
+      [
+        "a11ce2026f1a0002"
+      ]
+    ]
+  },
+  {
+    "id": "a11ce2026f1a0002",
+    "type": "function",
+    "z": "a11ce2026f1a0000",
+    "name": "Normalizar entrada Web",
+    "x": 390,
+    "y": 120,
+    "func": "const body = msg.payload;\nmsg.headers = { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' };\nconst acoes = ['mensagem', 'boas-vindas', 'retransmitir'];\nconst origem = msg.req.headers.origin;\nconst origemOk = !origem || origem === 'http://' + msg.req.headers.host;\nif (!origemOk || !body || typeof body.sessionId !== 'string' || !/^[A-Za-z0-9_-]{22,80}$/.test(body.sessionId) ||\n    !acoes.includes(body.acao) ||\n    (body.acao === 'mensagem' && (typeof body.texto !== 'string' || !body.texto.trim() || body.texto.length > 500))) {\n  msg.statusCode = 400;\n  msg.payload = { erro: 'Entrada inválida. Recarregue a página e tente novamente.' };\n  return [null, msg];\n}\nmsg.nexus = { dono: 'web:' + body.sessionId, acao: body.acao,\n  texto: body.texto, rotaAtiva: body.rotaAtiva === true };\nreturn [msg, null];",
+    "outputs": 2,
+    "timeout": 90,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "wires": [
+      [
+        "a11ce2026f1a0003"
+      ],
+      [
+        "a11ce2026f1a0004"
+      ]
+    ]
+  },
+  {
+    "id": "a11ce2026f1a0003",
+    "type": "function",
+    "z": "a11ce2026f1a0000",
+    "name": "Contexto + conversa + Java",
+    "x": 740,
+    "y": 180,
+    "func": "const engine = global.get('nexusEngine');\nconst cfg = global.get('nexusConfig');\nif (!engine) {\n  msg.statusCode = 503;\n  msg.payload = { erro: 'Inicie o projeto com npm start para carregar settings.cjs.' };\n  if (msg.req) return [msg, null];\n  node.warn('Módulo NEXUS não carregado.');\n  return null;\n}\nconst sessoes = flow.get('sessoesNexus') || {};\nconst agora = Date.now();\nfor (const k of Object.keys(sessoes)) {\n  if (agora - sessoes[k].ultima > 1800000 && !sessoes[k].estado.ocupada) delete sessoes[k];\n}\nconst chave = msg.nexus.dono;\nif (!sessoes[chave]) sessoes[chave] = { estado: engine.novaSessao() };\nsessoes[chave].ultima = agora;\nflow.set('sessoesNexus', sessoes);\nmsg.payload = await engine.conversar(cfg, sessoes[chave].estado, msg.nexus);\nreturn msg.req ? [msg, null] : [null, msg];",
+    "outputs": 2,
+    "timeout": 90,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "wires": [
+      [
+        "a11ce2026f1a0004"
+      ],
+      [
+        "a11ce2026f1a0008"
+      ]
+    ]
+  },
+  {
+    "id": "a11ce2026f1a0004",
+    "type": "http response",
+    "z": "a11ce2026f1a0000",
+    "name": "Resposta em texto · Web",
+    "x": 1030,
+    "y": 100,
+    "statusCode": "",
+    "headers": {},
+    "wires": []
+  },
+  {
+    "id": "a11ce2026f1a0005",
+    "type": "inject",
+    "z": "a11ce2026f1a0000",
+    "name": "Consultar Telegram a cada 2 s",
+    "x": 180,
+    "y": 300,
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "2",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "wires": [
+      [
+        "a11ce2026f1a0006"
+      ]
+    ]
+  },
+  {
+    "id": "a11ce2026f1a0006",
+    "type": "function",
+    "z": "a11ce2026f1a0000",
+    "name": "Ler texto ou áudio Telegram",
+    "x": 450,
+    "y": 300,
+    "func": "try {\n  const tg = global.get('nexusTelegram');\n  if (!tg) return null;\n  const mensagens = await tg.consultar();\n  return [mensagens.map(m => ({ tg: { chat: m.chat.id, voz: m.voice }, payload: m.text }))];\n} catch { node.warn('Telegram indisponível. Verifique conexão e token local.'); return null; }",
+    "outputs": 1,
+    "timeout": 90,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "wires": [
+      [
+        "a11ce2026f1a0007"
+      ]
+    ]
+  },
+  {
+    "id": "a11ce2026f1a0007",
+    "type": "function",
+    "z": "a11ce2026f1a0000",
+    "name": "STT · áudio para texto",
+    "x": 700,
+    "y": 300,
+    "func": "const tg = global.get('nexusTelegram');\nif (msg.tg.voz) {\n  try {\n    if (msg.tg.voz.duration > 30) {\n      await tg.enviarTexto(msg.tg.chat, 'Use texto ou envie uma mensagem de voz de até 30 segundos.');\n      return null;\n    }\n    msg.payload = await tg.transcrever(msg.tg.voz);\n  } catch {\n    try { await tg.enviarTexto(msg.tg.chat, 'Não consegui transcrever o áudio. Envie a resposta escrita.'); } catch {}\n    return null;\n  }\n}\nconst texto = typeof msg.payload === 'string' ? msg.payload.trim() : '';\nif (!texto || texto.length > 500) {\n  try { await tg.enviarTexto(msg.tg.chat, 'Envie uma mensagem de até 500 caracteres.'); } catch {}\n  return null;\n}\n// Um áudio nunca confirma o registro: a transcrição pode estar errada.\nif (msg.tg.voz && global.get('nexusEngine').normalizar(texto) === 'confirmar registro') {\n  try { await tg.enviarTexto(msg.tg.chat, 'Por segurança, digite Confirmar registro após conferir os dados.'); } catch {}\n  return null;\n}\nmsg.nexus = { dono: 'telegram:' + msg.tg.chat, acao: texto === '/start' ? 'boas-vindas' : 'mensagem', texto };\nreturn msg;",
+    "outputs": 1,
+    "timeout": 90,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "wires": [
+      [
+        "a11ce2026f1a0003"
+      ]
+    ]
+  },
+  {
+    "id": "a11ce2026f1a0008",
+    "type": "function",
+    "z": "a11ce2026f1a0000",
+    "name": "Responder texto · Telegram",
+    "x": 1030,
+    "y": 220,
+    "func": "const tg = global.get('nexusTelegram');\nlet resposta = msg.payload.resposta;\nif (msg.nexus.acao === 'boas-vindas') resposta += '\\n\\nUse dados fictícios. As respostas de voz são geradas por IA. Os áudios enviados para transcrição passam por um serviço externo.';\nif (msg.payload.sugestoes.length) resposta += '\\n\\nOpções: ' + msg.payload.sugestoes.join(' · ');\ntry {\n  await tg.enviarTexto(msg.tg.chat, resposta);\n  if (!msg.tg.voz) return null;\n  // O TTS lê apenas a próxima etapa, sem enviar a localização de volta ao serviço de voz.\n  msg.fala = ({ evento: 'Escolha o tipo de emergência.', localizacao: 'Informe um endereço ou ponto de referência.',\n    pessoas: 'Informe a quantidade de pessoas ou diga não sei.', risco: 'Há risco imediato?',\n    confirmar: 'Confira o resumo escrito e digite confirmar registro quando estiver correto.',\n    protocolo: 'Informe seu protocolo ou diga último pedido.' })[msg.payload.etapa] ||\n    'Veja a resposta completa do NEXUS na mensagem de texto.';\n  return msg;\n} catch { node.warn('Não foi possível responder ao Telegram.'); return null; }",
+    "outputs": 1,
+    "timeout": 90,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "wires": [
+      [
+        "a11ce2026f1a0009"
+      ]
+    ]
+  },
+  {
+    "id": "a11ce2026f1a0009",
+    "type": "function",
+    "z": "a11ce2026f1a0000",
+    "name": "TTS · responder áudio",
+    "x": 1280,
+    "y": 220,
+    "func": "try { await global.get('nexusTelegram').enviarVoz(msg.tg.chat, msg.fala); }\ncatch { node.warn('A síntese de voz falhou. A resposta escrita já foi enviada.'); }\nreturn null;",
+    "outputs": 1,
+    "timeout": 90,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "wires": [
+      []
+    ]
+  }
+]

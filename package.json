@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "node-red": "4.1.8"
+  },
+  "name": "nexus-chatbot-fiap",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env tools/iniciar.cjs",
+    "test": "node --test test/*.test.cjs"
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "private": true
+}
