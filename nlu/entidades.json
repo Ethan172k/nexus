@@ -1,0 +1,27 @@
+{
+  "tipo_emergencia": {
+    "Enchente": ["enchente", "inundação", "alagamento", "cheia"],
+    "Terremoto": ["terremoto", "tremor", "abalo sísmico"],
+    "Apagão": ["apagão", "falta de energia", "sem luz", "queda de energia"],
+    "Outra emergência": ["outra emergência", "outro", "outra situação"]
+  },
+  "localizacao": {
+    "marcadores": ["estou em", "estamos em", "perto de", "próximo a", "ao lado de", "referência", "local", "endereço", "rua", "avenida"]
+  },
+  "quantidade_pessoas": {
+    "desconhecida": ["não sei", "não sabemos", "desconhecido", "não tenho certeza"],
+    "um": ["uma", "um", "sozinho", "sozinha", "só eu"],
+    "dois": ["duas", "dois"], "tres": ["três"], "quatro": ["quatro"], "cinco": ["cinco"],
+    "seis": ["seis"], "sete": ["sete"], "oito": ["oito"], "nove": ["nove"], "dez": ["dez"],
+    "marcadores": ["pessoa", "pessoas", "gente", "vítima", "vítimas"]
+  },
+  "risco_imediato": {
+    "imediato": ["sim", "risco imediato", "perigo agora", "feridos", "pessoa ferida", "pessoa presa", "pessoas presas", "água subindo", "desabamento"],
+    "sem_imediato": ["não", "não há risco imediato", "sem risco imediato", "ninguém ferido", "sem feridos"],
+    "incerto": ["não sei", "incerto", "não sabemos", "não tenho certeza"]
+  },
+  "protocolo": {
+    "marcadores": ["protocolo", "pedido", "chamado", "número", "código", "nº"],
+    "ultimo": ["meu pedido", "último pedido", "último sos", "meu chamado"]
+  }
+}

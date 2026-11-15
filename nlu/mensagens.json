@@ -1,0 +1,11 @@
+{
+  "boasVindas": "Olá, sou o assistente NEXUS. Posso te ajudar a registrar um pedido de socorro ou consultar um pedido já registrado. Este é um protótipo acadêmico, sem integração com serviços de emergência.",
+  "opcoes": "Posso registrar um SOS, consultar um protocolo, explicar o modo offline ou cancelar um rascunho. Para registrar, vou pedir o tipo de emergência, um local de referência, a quantidade de pessoas e se há risco imediato.",
+  "offline": "O Webchat funciona sem internet quando o servidor local está rodando. O SOS fica salvo na fila local. No protótipo, um botão simula o relé e a central, sem transmissão real. Telegram e áudio precisam de internet.",
+  "perguntas": {
+    "evento": "O que aconteceu? Escolha o tipo de emergência.",
+    "localizacao": "Onde você está? Informe um endereço ou ponto de referência que ajude a encontrar o local.",
+    "pessoas": "Quantas pessoas precisam de ajuda? Se não souber, pode informar isso.",
+    "risco": "Há risco imediato, como pessoas feridas ou presas, ou perigo que está piorando agora?"
+  }
+}

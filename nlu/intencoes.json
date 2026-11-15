@@ -1,0 +1,32 @@
+{
+  "registrar_sos": [
+    "Quero registrar um SOS", "Preciso de resgate", "Enviar pedido de socorro",
+    "Quero pedir ajuda", "Abrir um chamado de emergência", "Tem gente ilhada",
+    "Estamos presos e precisamos de ajuda", "A água subiu, socorro", "Preciso de socorro",
+    "Quero abrir um pedido", "Solicitar uma equipe de resgate", "Tem uma emergência aqui"
+  ],
+  "consultar_status": [
+    "Consultar meu pedido", "Qual o status?", "Quero acompanhar o SOS",
+    "Meu chamado foi recebido?", "Já receberam meu pedido?", "Ver meu protocolo",
+    "Consultar protocolo 12", "Status do pedido 8", "Onde vejo meu chamado?",
+    "Meu SOS chegou na central?", "O pedido está pendente?", "Veja o último pedido"
+  ],
+  "modo_offline": [
+    "Como funciona sem internet?", "O que acontece se eu ficar offline?", "A rede mesh é real?",
+    "Dá para usar sem Wi-Fi?", "O Telegram funciona offline?", "O que acontece no modo avião?",
+    "Como o pedido é retransmitido?", "Qual a diferença entre fila e central?",
+    "Preciso de conexão?", "O que é o modo offline?", "Funciona sem sinal?", "Por que está salvo só aqui?"
+  ],
+  "orientacao": [
+    "Como usar o Nexus?", "Quais comandos posso usar?", "O que você faz?",
+    "Me mostre as opções", "Quero instruções do chat", "Como começo?",
+    "Como preencho o formulário?", "O que preciso informar?", "Mostre o menu",
+    "Para que serve este assistente?", "Quero ver a ajuda", "Como o chat me ajuda?"
+  ],
+  "cancelar_sos": [
+    "Cancelar rascunho", "Desistir deste pedido", "Não quero continuar",
+    "Pare o preenchimento", "Apagar o rascunho", "Cancelar o registro",
+    "Quero sair do SOS", "Não quero enviar", "Descartar rascunho",
+    "Interromper o cadastro", "Abortar este formulário", "Limpar o pedido ainda não enviado"
+  ]
+}
