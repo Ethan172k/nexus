@@ -94,7 +94,9 @@ O fluxo não grava áudio localmente. O STT envia o áudio ao provedor. A respos
 ### Evidências e revisão do grupo
 
 - Testes automatizados cobrem o catálogo, extração, validação do LLM, contratos de áudio e a integração real Webchat/Node-RED/Java com fila persistente.
-- Os testes de LLM e áudio usam respostas simuladas de API. O grupo deve executar um Ollama com modelo real e testar o Telegram e o áudio no bot real antes de gravar.
+- Os testes automatizados do LLM e do áudio usam respostas simuladas de API. As validações com serviços reais estão registradas separadamente abaixo.
+- **Telegram com texto e áudio — validado no bot real.** O `/sos` iniciou a conversa, a mensagem de voz foi transcrita e o bot avançou para a pergunta de localização com resposta escrita e falada.
+- **Ollama com Qwen2.5 1.5B — validado no ambiente de teste.** No Webchat, a frase “Tenho uma ocorrência para informar” abriu o fluxo de SOS com o indicador **LLM local**. Ainda falta repetir a demonstração no computador que será usado na apresentação.
 - Uso de IA generativa neste rascunho: ChatGPT para apoiar a leitura da rubrica, elaborar e revisar uma proposta de código, documentação e testes. Confiram, rodem e expliquem o código, ajustem o que decidirem e atualizem esta declaração com as ferramentas efetivamente usadas pelo grupo. A FIAP veda entregar material gerado sem entender e revisar.
 
 ### Referências técnicas
