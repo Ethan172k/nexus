@@ -1,0 +1,45 @@
+{
+  "entidades": [
+    {"id":"localizacao","nome":"Localização","campos":[
+      ["id_localizacao","BIGINT","PK","ID da localização informada neste pedido."],
+      ["descricao_informada","VARCHAR(200)","NOT NULL; CHECK 4 a 200","Relato de localização com espaços das pontas removidos."],
+      ["ponto_referencia","VARCHAR(120)","Opcional","Referência estruturada, se informada."],
+      ["bairro","VARCHAR(80)","Opcional","Bairro, se informado."],
+      ["municipio","VARCHAR(100)","Opcional","Município, se informado."]]},
+    {"id":"pedido_sos","nome":"Pedido SOS","campos":[
+      ["id_pedido","BIGINT","PK","ID interno estável."],
+      ["protocolo","BIGINT","NOT NULL; UNIQUE; CHECK > 0","Identificador público na instalação, invariável no reenvio."],
+      ["id_localizacao","BIGINT","NOT NULL; FK; UNIQUE","Cada pedido tem uma localização própria."],
+      ["referencia_sessao","VARCHAR(128)","NOT NULL; UNIQUE com chave_operacao","Identificador opaco da sessão e canal."],
+      ["chave_operacao","VARCHAR(80)","NOT NULL; UNIQUE com referencia_sessao","Idempotência da confirmação."],
+      ["tipo_emergencia","VARCHAR(24)","NOT NULL; CHECK domínio","ENCHENTE, TERREMOTO, APAGAO, OUTRA_EMERGENCIA."],
+      ["qtd_pessoas","SMALLINT","NOT NULL; CHECK 0 a 999","0 representa quantidade desconhecida, não ausência de vítimas."],
+      ["nivel_risco","VARCHAR(16)","NOT NULL; CHECK domínio","IMEDIATO, SEM_IMEDIATO, INCERTO."],
+      ["registrado_em","TIMESTAMPTZ","NOT NULL","Instante da confirmação, na proposta relacional."]]},
+    {"id":"no_comunicacao","nome":"Nó de comunicação","campos":[
+      ["id_no","BIGINT","PK","ID interno do nó."],
+      ["codigo_no","VARCHAR(40)","NOT NULL; UNIQUE","Código do nó, como RELE_DEMO."],
+      ["papel","VARCHAR(20)","NOT NULL; CHECK domínio","RELE é o papel utilizado no cenário."],
+      ["simulado","BOOLEAN","NOT NULL","Verdadeiro para os nós usados na demo."]]},
+    {"id":"tentativa_retransmissao","nome":"Tentativa de retransmissão","campos":[
+      ["id_tentativa","BIGINT","PK","ID da tentativa."],
+      ["id_pedido","BIGINT","NOT NULL; FK","Vincula a tentativa ao SOS original."],
+      ["id_no","BIGINT","FK; opcional","Nó escolhido. Vazio em tentativa sem rota."],
+      ["tentada_em","TIMESTAMPTZ","NOT NULL","Instante do teste."],
+      ["resultado","VARCHAR(24)","NOT NULL; CHECK domínio","SEM_ROTA ou RECEBIDO_SIMULADO."]]},
+    {"id":"historico_status","nome":"Histórico de status","campos":[
+      ["id_evento_status","BIGINT","PK","ID da alteração de estado."],
+      ["id_pedido","BIGINT","NOT NULL; FK","SOS referenciado."],
+      ["id_tentativa","BIGINT","FK; opcional; UNIQUE se preenchido","Tentativa que levou ao recebimento; vazia no registro inicial."],
+      ["status","VARCHAR(24)","NOT NULL; CHECK domínio","SALVO_LOCAL ou RECEBIDO_SIMULADO."],
+      ["ocorrido_em","TIMESTAMPTZ","NOT NULL","Instante da alteração."],
+      ["motivo","VARCHAR(120)","NOT NULL","Motivo do registro ou transição."]]}
+  ],
+  "relacoes":[
+    ["localizacao","pedido_sos","1","1","Cada pedido tem exatamente uma localização informada, criada com ele."],
+    ["pedido_sos","tentativa_retransmissao","1","0..N","Um pedido pode não ter tentativas ou ter várias."],
+    ["no_comunicacao","tentativa_retransmissao","0..1","0..N","Um nó pode servir várias tentativas. Sem rota não há nó escolhido."],
+    ["pedido_sos","historico_status","1","1..N","O pedido nasce com o estado SALVO_LOCAL."],
+    ["tentativa_retransmissao","historico_status","0..1","0..1","Só tentativa bem-sucedida gera evento de recebimento. O evento inicial não tem tentativa."]
+  ]
+}

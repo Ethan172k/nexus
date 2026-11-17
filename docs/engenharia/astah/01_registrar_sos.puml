@@ -1,0 +1,15 @@
+@startuml
+left to right direction
+actor "Cidadão" as C
+rectangle "NEXUS" {
+  usecase "Registrar SOS" as A
+  usecase "Validar e confirmar dados" as B
+  usecase "Salvar e gerar protocolo" as D
+  usecase "Cancelar rascunho" as E
+}
+C -- A
+C -- E
+A ..> B : <<include>>
+A ..> D : <<include>>
+E ..> A : <<extend>>
+@enduml

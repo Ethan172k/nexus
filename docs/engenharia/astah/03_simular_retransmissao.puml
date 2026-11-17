@@ -1,0 +1,12 @@
+@startuml
+left to right direction
+actor "Usuário da demonstração" as C
+rectangle "NEXUS" {
+  usecase "Simular retransmissão" as A
+  usecase "Verificar rota simulada" as B
+  usecase "Confirmar recebimento simulado" as D
+}
+C -- A
+A ..> B : <<include>>
+D ..> A : <<extend>>
+@enduml

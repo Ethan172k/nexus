@@ -2,6 +2,19 @@
 
 Protótipo da Global Solution 2026/2 (CitizenTech), disciplina Artificial Intelligence & Chatbot. O NEXUS coleta um pedido de socorro em uma conversa e distingue duas coisas que não podem ser confundidas: **registrado localmente** e **recebido pela central simulada**. Não aciona equipes de resgate. Use somente dados fictícios.
 
+## Entregas da FIAP
+
+O NEXUS é um único projeto, com anexos separados por disciplina no Portal do Aluno. Este repositório mantém o código e as fontes revisáveis, não os pacotes com identificação acadêmica.
+
+| Frente | Fontes e referências |
+|---|---|
+| Artificial Intelligence & Chatbot | [Fluxo Node-RED](flow.json), [WebChat](web/) e instruções abaixo. |
+| Building Relational Database | [Cenário, regras e modelo relacional proposto](docs/banco/README.md). O runtime ainda usa arquivos locais. |
+| Domain Driven Design Using Java | [Código Java](src/). O ZIP e o PDF próprios são preparados para o Portal. |
+| Computational Thinking Using Python | Material separado recebido pelo grupo; não representado nesta versão do Git. |
+| Front-End Design Engineering | [Base WebChat](web/). Não representa o site completo de sete páginas. |
+| Software Engineering and Business Model | [Documento funcional, backlog e fontes dos casos de uso](docs/engenharia/README.md). |
+
 ## 1. Rode o Webchat no computador
 
 **Pré-requisitos:** Node.js 22.13+ (ou 24) e Java JDK 17 ou 21. No primeiro uso, a instalação dos pacotes precisa de internet.
