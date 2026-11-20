@@ -1,0 +1,213 @@
+/* ==========================================================================
+   NEXUS — base.css
+   Variáveis (paleta, tipografia, espaçamentos), reset, base e utilitários de layout.
+   ========================================================================== */
+
+/* 1. Variáveis ------------------------------------------------------------ */
+:root {
+  /* Paleta: preto, azul-escuro e azul-ciano */
+  --color-bg: #05070d;
+  --color-bg-alt: #080d18;
+  --color-surface: #0c1526;
+  --color-surface-2: #101d34;
+  --color-navy: #0b1f3a;
+  --color-blue: #2563eb;
+  --color-cyan: #22d3ee;
+  --color-cyan-dark: #0891b2;
+  --color-text: #e6edf7;
+  --color-muted: #9aa8bd;
+  --color-border: rgba(34, 211, 238, 0.14);
+  --color-border-strong: rgba(34, 211, 238, 0.35);
+  --color-danger: #f43f5e;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+
+  --gradient-brand: linear-gradient(135deg, var(--color-cyan) 0%, var(--color-blue) 100%);
+
+  /* Tipografia */
+  --font-title: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  /* Espaçamentos e formas */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 5rem;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --container: 1180px;
+  --header-height: 72px;
+  --shadow-glow: 0 0 0 1px var(--color-border), 0 20px 50px -20px rgba(34, 211, 238, 0.25);
+  --transition: 0.3s ease;
+}
+
+/* 2. Reset e base --------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  /* Grade sutil que remete a redes e conexões */
+  background-image:
+    radial-gradient(circle at 15% 0%, rgba(37, 99, 235, 0.16), transparent 40%),
+    radial-gradient(circle at 90% 20%, rgba(34, 211, 238, 0.08), transparent 35%),
+    linear-gradient(rgba(34, 211, 238, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.035) 1px, transparent 1px);
+  background-size: auto, auto, 48px 48px, 48px 48px;
+  overflow-x: hidden;
+}
+
+/* Trava a rolagem quando o menu mobile está aberto */
+body.menu-open {
+  overflow: hidden;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--color-cyan);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: #67e8f9;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-title);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(2.3rem, 5vw, 3.9rem);
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+p {
+  color: var(--color-muted);
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* Foco visível para navegação por teclado (acessibilidade) */
+:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Link para pular direto ao conteúdo */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 200;
+  padding: 0.6rem 1rem;
+  background: var(--color-cyan);
+  color: var(--color-bg);
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+}
+
+.skip-link:focus {
+  top: 1rem;
+  color: var(--color-bg);
+}
+
+/* Texto apenas para leitores de tela */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* 3. Utilitários e layout ------------------------------------------------- */
+.container {
+  width: min(100% - 2.5rem, var(--container));
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--space-xl);
+}
+
+.section--alt {
+  background: linear-gradient(180deg, transparent, rgba(11, 31, 58, 0.35), transparent);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.grid--2 { grid-template-columns: repeat(2, 1fr); }
+.grid--3 { grid-template-columns: repeat(3, 1fr); }
+.grid--4 { grid-template-columns: repeat(4, 1fr); }
+
+.split {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+.text-gradient {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-lg {
+  margin-top: var(--space-lg);
+}

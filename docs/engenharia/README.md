@@ -36,12 +36,16 @@ Persona hipotética: morador durante enchente com sinal instável. **Pensa e sen
 | UC-02 — Consultar protocolo | Cidadão quer saber se pedido foi recebido. | Digita protocolo ou pede o último; sistema verifica sessão e exibe estado e prioridade. | Protocolo ausente ou de outra sessão não revela dados. | US-02 |
 | UC-03 — Simular retransmissão | Usuário da demo quer verificar a disponibilidade da rota. | Seleciona cenário, solicita teste e o sistema avalia a rota. | Sem rota, conserva SALVO_LOCAL; com rota, confirma RECEBIDO_SIMULADO sem trocar protocolo. | US-03 |
 
-## Finalização no Astah
+## Diagramas de casos de uso
 
-Use os três arquivos [PlantUML](astah/) como fonte. No Astah, confira os atores, associações, inclusões e extensões e salve um projeto .asta. As prévias não são evidência de criação no Astah. Em uma versão com suporte à importação de casos de uso pelo plugin oficial, use a conversão; se a versão não importar esse tipo, reproduza os elementos no editor nativo. Exporte as três imagens para o PDF.
+- [Projeto editável do Astah UML](astah/NEXUS_Casos_de_Uso.asta).
+- Exportações: [UC-01 — Registrar SOS](astah/01_registrar_sos.png), [UC-02 — Consultar protocolo](astah/02_consultar_protocolo.png) e [UC-03 — Simular retransmissão](astah/03_simular_retransmissao.png).
+- Os arquivos PlantUML na mesma pasta foram usados como referência de modelagem. As exportações do Astah foram incluídas no PDF de Engenharia.
 
 ## Backlog e pitch
 
-[backlog.json](backlog.json) é a base de cartões, não um quadro publicado. Transfira para o Trello/Jira, confirme atribuições e datas e confira leitura pelo professor. O pitch deve usar imagens reais e ter até três minutos, sem vídeo gerado por IA. Confirme com o professor a instrução sobre narração humana, que diverge no PDF. Inclua os dois links no PDF único.
+O [quadro do Trello](https://trello.com/b/37wTJhlr/projeto-nexus) acompanha o backlog da equipe. O arquivo [backlog.json](backlog.json) é a versão local de referência.
+
+O pitch de Engenharia tem 2 min 08 s. Seu link de reprodução está na página 7 do PDF da disciplina, mantido no pacote do Portal do Aluno. Trata-se de um vídeo diferente da demonstração narrada de AI & Chatbot.
 
 Rubrica FIAP: páginas 92–101. IA generativa auxiliou a organização e documentação, a serem revisadas e defendidas pelo grupo.

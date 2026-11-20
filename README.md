@@ -1,6 +1,6 @@
 # NEXUS | Assistente de emergência
 
-Protótipo da Global Solution 2026/2 (CitizenTech), disciplina Artificial Intelligence & Chatbot. O NEXUS coleta um pedido de socorro em uma conversa e distingue duas coisas que não podem ser confundidas: **registrado localmente** e **recebido pela central simulada**. Não aciona equipes de resgate. Use somente dados fictícios.
+Projeto acadêmico da Global Solution 2026/2 (CitizenTech), FIAP. O NEXUS coleta um pedido de socorro em uma conversa e distingue duas coisas que não podem ser confundidas: **registrado localmente** e **recebido pela central simulada**. Não aciona equipes de resgate. Use somente dados fictícios.
 
 ## Entregas da FIAP
 
@@ -11,15 +11,15 @@ O NEXUS é um único projeto, com anexos separados por disciplina no Portal do A
 | Artificial Intelligence & Chatbot | [Fluxo Node-RED](flow.json), [WebChat](web/) e instruções abaixo. |
 | Building Relational Database | [Cenário, regras e modelo relacional proposto](docs/banco/README.md). O runtime ainda usa arquivos locais. |
 | Domain Driven Design Using Java | [Código Java](src/). O ZIP e o PDF próprios são preparados para o Portal. |
-| Computational Thinking Using Python | Material separado recebido pelo grupo; não representado nesta versão do Git. |
-| Front-End Design Engineering | [Base WebChat](web/). Não representa o site completo de sete páginas. |
-| Software Engineering and Business Model | [Documento funcional, backlog e fontes dos casos de uso](docs/engenharia/README.md). |
+| Computational Thinking Using Python | [Aplicação de terminal e instruções](python/README.md). |
+| Front-End Design Engineering | [Site institucional de sete páginas](site/README.md), independente do [WebChat local](web/). |
+| Software Engineering and Business Model | [Documento funcional, backlog e projeto Astah](docs/engenharia/README.md). |
 
 ## 1. Rode o Webchat no computador
 
 **Pré-requisitos:** Node.js 22.13+ (ou 24) e Java JDK 17 ou 21. No primeiro uso, a instalação dos pacotes precisa de internet.
 
-1. Extraia todo o ZIP e abra a pasta `NEXUS_Chatbot_FIAP` no VS Code.
+1. Abra a raiz deste repositório no VS Code. Se estiver usando o ZIP da disciplina, extraia-o e abra a pasta `NEXUS_Chatbot_FIAP`.
 2. No terminal do VS Code, rode:
 
    ```bash
@@ -98,7 +98,9 @@ O fluxo não grava áudio localmente. O STT envia o áudio ao provedor. A respos
 | Telegram texto, STT e TTS via Node-RED | 25 | Preencha credenciais, teste com o bot real e grave a voz recebida e a resposta escrita/falada |
 | Vídeo real com narração explicativa | 25 | O grupo precisa gravar Webchat e Telegram, publicar no YouTube como não listado e testar o link em aba anônima |
 
-**Entrega:** até **19/11/2026, às 23h55**, no Portal do Aluno, na disciplina correta. Substitua os campos de `IDENTIFICACAO.txt` por nome completo, RM e turma de cada integrante e pelo link do vídeo. O ZIP atual é uma base para revisão do grupo. Não envie o arquivo com dados em branco, segredos, `node_modules` ou dados de testes. A apresentação presencial de 23 a 27/11 vale 30% da nota da disciplina e pede demonstração ao vivo de áudio no Telegram e participação dos integrantes.
+**Pacote acadêmico.** A edição final do ZIP de Chatbot tem identificação da dupla e o link direto do vídeo no SharePoint. Este repositório mantém apenas o modelo de identificação na raiz. Os links de vídeos, ZIPs e PDFs de entrega ficam no canal da FIAP.
+
+**Demonstração gravada.** A gravação mostra navegação real no WebChat. O trecho de Telegram é uma simulação ilustrativa, identificada no vídeo e com voz sintética de exemplo. Ele não é evidência da execução ao vivo do bot nem substitui a exigência de demonstração real descrita na rubrica.
 
 **Sugestão de sequência para o vídeo:** apresente o problema e avise que é um protótipo. Mostre um SOS no Webchat, a fila pendente e a mudança após habilitar o relé simulado. Depois, mostre a frase reconhecida pelo LLM local e o nó de contexto. Termine com texto no Telegram, um áudio curto transcrito e a resposta falada. O vídeo de **Artificial Intelligence & Chatbot** deve ter narração explicativa. Ele é distinto do pitch de **Software Engineering and Business Model**, que tem instruções próprias no PDF.
 
@@ -108,7 +110,7 @@ O fluxo não grava áudio localmente. O STT envia o áudio ao provedor. A respos
 
 - Testes automatizados cobrem o catálogo, extração, validação do LLM, contratos de áudio e a integração real Webchat/Node-RED/Java com fila persistente.
 - Os testes automatizados do LLM e do áudio usam respostas simuladas de API. As validações com serviços reais estão registradas separadamente abaixo.
-- **Telegram com texto e áudio — validado no bot real.** O `/sos` iniciou a conversa, a mensagem de voz foi transcrita e o bot avançou para a pergunta de localização com resposta escrita e falada.
+- **Validação anterior registrada pelo grupo no Telegram.** O registro de teste anterior relata a abertura do fluxo com `/sos`, transcrição e resposta escrita e falada. Essa validação é distinta da gravação final, que mostra uma simulação do Telegram.
 - **Ollama com Qwen2.5 1.5B — validado no ambiente de teste.** No Webchat, a frase “Tenho uma ocorrência para informar” abriu o fluxo de SOS com o indicador **LLM local**. Ainda falta repetir a demonstração no computador que será usado na apresentação.
 - Uso de IA generativa neste rascunho: ChatGPT para apoiar a leitura da rubrica, elaborar e revisar uma proposta de código, documentação e testes. Confiram, rodem e expliquem o código, ajustem o que decidirem e atualizem esta declaração com as ferramentas efetivamente usadas pelo grupo. A FIAP veda entregar material gerado sem entender e revisar.
 

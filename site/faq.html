@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Perguntas e respostas sobre o NEXUS, LoRa, satélite, rede Mesh das antenas e emergências.">
+  <meta name="theme-color" content="#05070d">
+  <title>Perguntas frequentes | NEXUS</title>
+  <link rel="icon" type="image/svg+xml" href="assets/icons/logo-nexus.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script src="js/script.js" defer></script>
+  <script src="js/faq.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- Cabeçalho com navegação principal -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="NEXUS — página inicial">
+        <img src="assets/icons/logo-nexus.svg" alt="" width="38" height="38">
+        NEXUS
+      </a>
+
+      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="main-nav" id="menu-principal" aria-label="Menu principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="solucao.html">Como funciona</a></li>
+          <li><a href="tecnologia.html">Tecnologias</a></li>
+          <li><a href="faq.html" aria-current="page">FAQ</a></li>
+          <li><a href="integrantes.html">Integrantes</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Você está em">
+          <a href="index.html">Início</a> <span aria-hidden="true">/</span> <span>FAQ</span>
+        </nav>
+        <span class="eyebrow">Perguntas frequentes</span>
+        <h1>Tire suas <span class="text-gradient">dúvidas</span></h1>
+        <p>Funcionamento, comunicação sem internet, LoRa, satélite, rede Mesh e uso em emergências.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="titulo-faq">
+      <div class="container">
+        <h2 id="titulo-faq" class="sr-only">Lista de perguntas</h2>
+
+        <div class="faq-tools">
+          <div class="search-field">
+            <label for="faq-search" class="sr-only">Buscar pergunta</label>
+            <input id="faq-search" type="search" placeholder="Buscar: LoRa, satélite, GPS..." autocomplete="off">
+          </div>
+          <div class="filter-group" role="group" aria-label="Filtrar por categoria">
+            <button class="filter-btn" type="button" data-filter="todas" aria-pressed="true">Todas</button>
+            <button class="filter-btn" type="button" data-filter="geral" aria-pressed="false">Geral</button>
+            <button class="filter-btn" type="button" data-filter="funcionamento" aria-pressed="false">Funcionamento</button>
+            <button class="filter-btn" type="button" data-filter="tecnologia" aria-pressed="false">Tecnologia</button>
+            <button class="filter-btn" type="button" data-filter="emergencia" aria-pressed="false">Emergência</button>
+          </div>
+        </div>
+
+        <p id="faq-count" class="sr-only" aria-live="polite"></p>
+
+        <div class="faq-list">
+          <article class="faq-item" data-category="geral">
+            <h3>
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="resposta-1" id="pergunta-1">
+                <span>O que é o NEXUS? <span class="badge faq-tag">Geral</span></span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-answer" id="resposta-1" role="region" aria-labelledby="pergunta-1">
+              <div class="faq-answer-inner">
+                <p>É um projeto acadêmico de comunicação em emergências. O WebChat permite registrar um SOS fictício e acompanhar seu protocolo. O envio por LoRa ou satélite é uma proposta futura.</p>
+              </div>
+            </div>
+          </article>
+          <article class="faq-item" data-category="geral">
+            <h3>
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="resposta-2" id="pergunta-2">
+                <span>O NEXUS já funciona de verdade? <span class="badge faq-tag">Geral</span></span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-answer" id="resposta-2" role="region" aria-labelledby="pergunta-2">
+              <div class="faq-answer-inner">
+                <p>O WebChat registra o pedido localmente e simula o recebimento. Este site tem uma simulação visual separada. O projeto não transmite alertas reais nem aciona resgate.</p>
+              </div>
+            </div>
+          </article>
+          <article class="faq-item" data-category="funcionamento">
+            <h3>
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="resposta-3" id="pergunta-3">
+                <span>Como funcionariam as rotas alternativas? <span class="badge faq-tag">Funcionamento</span></span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-answer" id="resposta-3" role="region" aria-labelledby="pergunta-3">
+              <div class="faq-answer-inner">
+                <p>Na arquitetura proposta, uma rede de antenas LoRa seria a primeira opção. Um serviço via satélite poderia ser o canal de reserva. Essas rotas existem só no simulador visual e não estão ligadas a uma central real.</p>
+              </div>
+            </div>
+          </article>
+          <article class="faq-item" data-category="funcionamento">
+            <h3>
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="resposta-4" id="pergunta-4">
+                <span>Preciso de Bluetooth ou de outros celulares por perto? <span class="badge faq-tag">Funcionamento</span></span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-answer" id="resposta-4" role="region" aria-labelledby="pergunta-4">
+              <div class="faq-answer-inner">
+                <p>A arquitetura proposta não depende de celulares vizinhos ou de Bluetooth. O WebChat não usa esses meios: ele registra o relato usando o servidor local.</p>
+              </div>
+            </div>
+          </article>
+          <article class="faq-item" data-category="funcionamento">
+            <h3>
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="resposta-5" id="pergunta-5">
+                <span>E se a antena mais próxima cair? <span class="badge faq-tag">Funcionamento</span></span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-answer" id="resposta-5" role="region" aria-labelledby="pergunta-5">
+              <div class="faq-answer-inner">
+                <p>O simulador testa uma arquitetura em que antenas LoRa em malha podem oferecer caminhos alternativos e o satélite pode atuar como reserva. Nenhum caminho representa uma infraestrutura instalada.</p>
+              </div>
+            </div>
+          </article>
+          <article class="faq-item" data-category="funcionamento">
+            <h3>
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="resposta-6" id="pergunta-6">
+                <span>O que acontece se nenhum canal estiver disponível? <span class="badge faq-tag">Funcionamento</span></span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-answer" id="resposta-6" role="region" aria-labelledby="pergunta-6">
+              <div class="faq-answer-inner">
+                <p>No simulador visual, o estado fica sem rota e o reenvio é manual: restaure uma conexão e clique em Enviar alerta. No WebChat, o SOS fica salvo localmente e o recebimento só muda ao testar uma rota simulada.</p>
+              </div>
+            </div>
+          </article>
+          <article class="faq-item" data-category="tecnologia">
+            <h3>
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="resposta-7" id="pergunta-7">
+                <span>O que é LoRa e por que usar? <span class="badge faq-tag">Tecnologia</span></span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-answer" id="resposta-7" role="region" aria-labelledby="pergunta-7">
+              <div class="faq-answer-inner">
+                <p>LoRa (Long Range) é uma tecnologia de rádio que alcança quilômetros gastando pouquíssima energia. Ela transmite poucos dados, o que é suficiente para alertas curtos com localização.</p>
+              </div>
+            </div>
+          </article>
+          <article class="faq-item" data-category="tecnologia">
+            <h3>
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="resposta-8" id="pergunta-8">
+                <span>Por que usar satélite também? <span class="badge faq-tag">Tecnologia</span></span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-answer" id="resposta-8" role="region" aria-labelledby="pergunta-8">
+              <div class="faq-answer-inner">
+                <p>Um serviço via satélite poderia oferecer uma rota alternativa. Disponibilidade, cobertura e tempo de resposta dependeriam do equipamento, do local e do serviço contratado. O grupo não mediu esses valores.</p>
+              </div>
+            </div>
+          </article>
+          <article class="faq-item" data-category="tecnologia">
+            <h3>
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="resposta-9" id="pergunta-9">
+                <span>O que é a rede Mesh no NEXUS? <span class="badge faq-tag">Tecnologia</span></span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-answer" id="resposta-9" role="region" aria-labelledby="pergunta-9">
+              <div class="faq-answer-inner">
+                <p>É uma organização em que antenas vizinhas podem fornecer caminhos alternativos. A existência de outra rota depende das conexões disponíveis. No simulador, os celulares não fazem parte da malha.</p>
+              </div>
+            </div>
+          </article>
+          <article class="faq-item" data-category="tecnologia">
+            <h3>
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="resposta-10" id="pergunta-10">
+                <span>Como o NEXUS registra a localização? <span class="badge faq-tag">Tecnologia</span></span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-answer" id="resposta-10" role="region" aria-labelledby="pergunta-10">
+              <div class="faq-answer-inner">
+                <p>No WebChat, o usuário descreve a localização. Usar GPS é uma hipótese do dispositivo proposto, não uma função implementada.</p>
+              </div>
+            </div>
+          </article>
+          <article class="faq-item" data-category="emergencia">
+            <h3>
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="resposta-11" id="pergunta-11">
+                <span>Em quais situações o NEXUS seria útil? <span class="badge faq-tag">Emergência</span></span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-answer" id="resposta-11" role="region" aria-labelledby="pergunta-11">
+              <div class="faq-answer-inner">
+                <p>Em enchentes, deslizamentos, terremotos, incêndios, apagões prolongados e em comunidades isoladas, ou seja, sempre que a infraestrutura de telecomunicações estiver danificada, congestionada ou não existir.</p>
+              </div>
+            </div>
+          </article>
+          <article class="faq-item" data-category="emergencia">
+            <h3>
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="resposta-12" id="pergunta-12">
+                <span>O simulador informa a cobertura real? <span class="badge faq-tag">Emergência</span></span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-answer" id="resposta-12" role="region" aria-labelledby="pergunta-12">
+              <div class="faq-answer-inner">
+                <p>Não. O mapa e os tempos são demonstrativos. O projeto não mede cobertura, disponibilidade ou qualidade de sinal em locais reais.</p>
+              </div>
+            </div>
+          </article>
+          <article class="faq-item" data-category="emergencia">
+            <h3>
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="resposta-13" id="pergunta-13">
+                <span>O NEXUS substitui os números de emergência? <span class="badge faq-tag">Emergência</span></span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-answer" id="resposta-13" role="region" aria-labelledby="pergunta-13">
+              <div class="faq-answer-inner">
+                <p>Não. O NEXUS é uma demonstração acadêmica. Em uma emergência real, use os canais oficiais e siga as orientações das autoridades locais.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div id="faq-empty" class="faq-empty" hidden>
+          <p>Nenhuma pergunta encontrada. Tente outro termo ou <a href="contato.html">consulte a página de contato</a>.</p>
+        </div>
+
+        <div class="cta-band mt-lg reveal">
+          <div>
+            <h2>Não encontrou o que procurava?</h2>
+            <p>Mande sua pergunta para a equipe pelo formulário de contato.</p>
+          </div>
+          <a class="btn btn--primary" href="contato.html">Falar com a equipe <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html">
+            <img src="assets/icons/logo-nexus.svg" alt="" width="38" height="38">
+            NEXUS
+          </a>
+          <p>Quando as redes falham, a comunicação continua. Projeto acadêmico da Global Solution 2026/2 — FIAP.</p>
+        </div>
+        <div>
+          <h2>Navegação</h2>
+          <ul class="footer-links">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="sobre.html">Sobre o projeto</a></li>
+            <li><a href="solucao.html">Como funciona</a></li>
+            <li><a href="tecnologia.html">Tecnologias</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Ajuda</h2>
+          <ul class="footer-links">
+            <li><a href="faq.html">Perguntas frequentes</a></li>
+            <li><a href="integrantes.html">Integrantes</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="tel:193">Emergência real: Bombeiros (193)</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="current-year">2026</span> Equipe NEXUS. Todos os direitos reservados.</p>
+        <p>Projeto acadêmico. O simulador representa rotas hipotéticas e não transmite alertas reais.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

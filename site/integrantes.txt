@@ -1,0 +1,8 @@
+NEXUS — Global Solution 2026/2 (CitizenTech) — FIAP
+Disciplina: Front-End Design Engineering
+Repositório do projeto: https://github.com/Ethan172k/nexus
+
+Integrantes (RM — Nome completo — Turma):
+RM576074 — Octavio de Souza Ribeiro — 1TDSPA
+RM575763 — Ethan Suganuma Figueiredo — 1TDSPA
+

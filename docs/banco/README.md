@@ -17,6 +17,8 @@ Um morador afetado por enchente informa localização, quantidade de pessoas e r
 
 ## DER conceitual
 
+[Ver o diagrama de entidades e relacionamentos](diagramas/der-conceitual.png).
+
 - Localização (1) — (1) Pedido SOS. Localização é um retrato do relato associado àquele SOS.
 - Pedido SOS (1) — (0..N) Tentativa de retransmissão.
 - Nó de comunicação (0..1) — (0..N) Tentativa de retransmissão.
@@ -27,10 +29,12 @@ Não se cria N:N artificial. As tentativas já relacionam pedidos a nós quando 
 
 ## Modelo lógico
 
+[Ver o diagrama lógico de tabelas e chaves](diagramas/modelo-logico.png).
+
 [modelo.json](modelo.json) é a fonte do dicionário de dados, com cinco entidades, cardinalidades, tipos, PK, FK, unicidade e critérios CHECK. TIMESTAMPTZ representa um tipo temporal com fuso, não obriga adoção de um SGBD.
 
 **Integridade entre linhas.** A localização é criada junto com o pedido e não é compartilhada (FK única). SEM_ROTA exige nó nulo e RECEBIDO_SIMULADO exige nó preenchido. Em uma implementação futura, uma FK composta por pedido e tentativa verifica que ambos se referem ao mesmo SOS. A transação verifica o resultado, grava a alteração e impede duplicidade. O estado atual é o evento mais recente ordenado por data e ID. No escopo inicial, uma restrição UNIQUE(pedido, status) protege a unicidade do evento inicial e da confirmação simulada. A transação garante que cada pedido tenha seu evento inicial.
 
-**Exemplo fictício.** Protocolo 42: 14h00 SALVO_LOCAL → 14h02 tentativa SEM_ROTA (sem mudança) → 14h05 RECEBIDO_SIMULADO após teste com rota. A rubrica pede modelagem e não exige SQL. Confirme a ferramenta usada na turma antes de finalizar.
+**Exemplo fictício.** Protocolo 42: 14h00 SALVO_LOCAL → 14h02 tentativa SEM_ROTA (sem mudança) → 14h05 RECEBIDO_SIMULADO após teste com rota. A entrega é de modelagem. Os diagramas representam a mesma proposta documentada no PDF da disciplina.
 
 Base: [gateway Java](../../src/GatewayNexus.java). Rubrica FIAP: páginas 30–35. IA generativa auxiliou a organização e documentação, a serem revisadas e defendidas pelo grupo.

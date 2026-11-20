@@ -5,3 +5,8 @@ node_modules/
 !.env.example
 *.backup
 relatorio_nexus.csv
+
+# Dados e cache locais do protótipo Python
+nexus_dados.json
+__pycache__/
+*.pyc
